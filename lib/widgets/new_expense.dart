@@ -20,10 +20,12 @@ class _NewStateExpense extends State<NewExpense>{
   // }
 
   final _titleController = TextEditingController();
- 
+ final _amountController = TextEditingController();
+
   @override
   void dispose(){
     _titleController.dispose();
+    _amountController.dispose();
     super.dispose();
   }
   @override
@@ -40,11 +42,27 @@ class _NewStateExpense extends State<NewExpense>{
           decoration: const InputDecoration(
             label: Text("Title")
           ),
-
         ),
+
+
+         TextField(
+          // onChanged:_saveTitleInput ,
+         
+         controller: _amountController,
+         keyboardType: TextInputType.number,
+          decoration: const InputDecoration(
+            prefixText: '\$ ',
+            label: Text("Amount")
+          ),
+        ),
+        
+        
         Row(children: [
+          TextButton(onPressed: (){}, child: const Text("Cancel")),
           ElevatedButton(onPressed: (){
             print(_titleController.text);
+            print(_amountController.text);
+
           }, child: const Text("Save Expense"))
         ],)
       ],
