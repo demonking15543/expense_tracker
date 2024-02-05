@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import 'package:expense_tracker/modals/expense.dart';
 final formatter = DateFormat.yMd();
 class NewExpense extends StatefulWidget{
 
@@ -24,6 +24,7 @@ class _NewStateExpense extends State<NewExpense>{
   final _titleController = TextEditingController();
  final _amountController = TextEditingController();
  DateTime? _selectedDate;
+ Category _selectedCategory = Category.leisure;
 
 void _presentDatePicker  () async{
   final now = DateTime.now();
@@ -88,15 +89,33 @@ void _presentDatePicker  () async{
         
    ],),
 
-        
+        const SizedBox(height: 16,),
+
         Row(children: [
+          DropdownButton(
+            value: _selectedCategory,
+            items: Category.values.map(
+              (category) =>DropdownMenuItem(
+                value: category,
+                child: Text(
+                  category.name.toUpperCase())) ).toList(), onChanged: (value){
+                   setState(() {
+                    if(value==null){
+                      return;
+                    }
+                     _selectedCategory=value;
+                   });
+                  }),
+                  const Spacer(),
           TextButton(onPressed: (){
             Navigator.pop(context);
           }, child: const Text("Cancel")),
           ElevatedButton(onPressed: (){
+
             print(_titleController.text);
             print(_amountController.text);
             print(_selectedDate);
+            print(_selectedCategory);
           }, child: const Text("Save Expense"))
         ],)
       ],
