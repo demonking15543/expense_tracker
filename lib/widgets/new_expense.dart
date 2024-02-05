@@ -42,6 +42,32 @@ void _presentDatePicker  () async{
 
       
 }
+
+void _submitFormData(){
+ final enteredAmount = double.tryParse(_amountController.text);
+ final amountIsInvalid = enteredAmount==null || enteredAmount <=0;
+
+  if(_titleController.text.trim().isEmpty ||
+   amountIsInvalid ||
+    _selectedDate == null){
+    // show error message
+    showDialog(
+      context: context, 
+      builder: (ctx)=>  AlertDialog(
+      title:  const Text("Invali Input"),
+      content:  const Text("Please make your a valid title, amount and selected date."),
+      actions: [
+        TextButton(onPressed: (){
+          Navigator.pop(ctx);
+        }, child:const  Text("Close"))
+      
+     ],
+    ));
+  return;
+  }
+
+
+}
   @override
   void dispose(){
     _titleController.dispose();
@@ -110,13 +136,8 @@ void _presentDatePicker  () async{
           TextButton(onPressed: (){
             Navigator.pop(context);
           }, child: const Text("Cancel")),
-          ElevatedButton(onPressed: (){
-
-            print(_titleController.text);
-            print(_amountController.text);
-            print(_selectedDate);
-            print(_selectedCategory);
-          }, child: const Text("Save Expense"))
+          ElevatedButton(onPressed:_submitFormData
+          , child: const Text("Save Expense"))
         ],)
       ],
     ),);
