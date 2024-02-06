@@ -72,7 +72,7 @@ void _submitFormData(){
       date:_selectedDate! ,
        category: _selectedCategory));
 
-
+Navigator.pop(context);
 }
   @override
   void dispose(){
