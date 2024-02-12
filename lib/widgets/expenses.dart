@@ -78,7 +78,7 @@ if(_registeredExpenses.isNotEmpty){
     return Scaffold(
       
       appBar: AppBar(
-        title: const Text("Expenxse Tracker") ,
+        title: const Text("Expense Tracker") ,
         actions: [
           IconButton(
             onPressed: _openAddExpenseOverlay,
