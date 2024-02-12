@@ -1,4 +1,5 @@
 import 'package:expense_tracker/modals/expense.dart';
+import 'package:expense_tracker/widgets/chart/chart.dart';
 import 'package:expense_tracker/widgets/expenseslist/expenses_list.dart';
 import 'package:expense_tracker/widgets/new_expense.dart';
 
@@ -86,7 +87,7 @@ if(_registeredExpenses.isNotEmpty){
       ),
       body: Column(
        children:  [
-        const Text('Chart'),
+         Chart(expenses: _registeredExpenses),
         Expanded(child: mainContent)
         ], 
       ),
